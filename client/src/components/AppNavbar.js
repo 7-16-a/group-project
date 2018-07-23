@@ -11,19 +11,19 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem 
+    DropdownItem
 } from 'reactstrap';
 
 class AppNavbar extends Component {
     constructor(props) {
         super(props);
-    
+
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
           collapsed: true
         };
       }
-    
+
       toggleNavbar() {
         this.setState({
           collapsed: !this.state.collapsed
@@ -33,7 +33,7 @@ class AppNavbar extends Component {
         return (
           <div>
             <Navbar color="faded" light>
-              <NavbarBrand href="/" className="mr-auto">Blog App</NavbarBrand>
+              <NavbarBrand href="/" className="mr-auto">Online Journal App</NavbarBrand>
               <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
               <Collapse isOpen={!this.state.collapsed} navbar>
                 <Nav navbar>
