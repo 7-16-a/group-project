@@ -41,10 +41,10 @@ class AppNavbar extends Component {
                     <NavLink href="/">Login</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="/">registier</NavLink>
+                    <NavLink href="/">Sign Up</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="/">view posts</NavLink>
+                    <NavLink href="/">View posts</NavLink>
                   </NavItem>
                 </Nav>
               </Collapse>

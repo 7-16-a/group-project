@@ -1,0 +1,8 @@
+.Landing {
+    text-align: center;
+}
+
+.landingLogo {
+    max-width: 100%;
+    object-fit: contain;
+}

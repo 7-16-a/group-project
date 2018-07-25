@@ -1,32 +1,32 @@
 import React from "react";
-import "./Login.css";
+import "./Signup.css";
 import { Form, FormControl, FormGroup, Col, Button } from "react-bootstrap";
 
-class Login extends React.Component {
+class Signup extends React.Component {
   render() {
     return (
-      <div className="Login">
+      <div className="Signup">
         <div className="jumbotron text-left">
-          <Col lg={1}>
-            <h2>Login</h2>
+          <Col sm={2}>
+            <h2>Signup</h2>
           </Col>
           <br />
-          <Form horizontal action="/login" method="post">
+          <Form horizontal action="/register" method="post">
             <FormGroup controlId="formHorizontalUser">
-              <Col sm={1}>Username:</Col>
+              <Col sm={2}>Choose a Username:</Col>
               <Col sm={8}>
                 <FormControl type="text" name="username" />
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalPassword">
-              <Col sm={1}>Password:</Col>
+              <Col sm={2}>Choose a Password:</Col>
               <Col sm={8}>
-                <FormControl type="password" name="password" />
+                <FormControl type="text" name="password" />
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col sm={12}>
-                <Button bsStyle="info" type="submit">
+              <Col sm={8}>
+                <Button bsStyle="info" type="submit" value="Submit">
                   Submit
                 </Button>
               </Col>
@@ -34,9 +34,9 @@ class Login extends React.Component {
           </Form>
           <Col sm={8}>
             <p>
-              Don't have an account yet?{" "}
-              <a className="loginLinkStyle" href="#signup">
-                Sign up here
+              Already have an account?{" "}
+              <a className="signupLinkStyle" href="#login">
+                Log in here
               </a>
             </p>
           </Col>
@@ -46,4 +46,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Signup;
