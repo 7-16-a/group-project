@@ -1,49 +1,116 @@
-import React from "react";
+import React, { Component } from "react";
 import "./Signup.css";
 import { Form, FormControl, FormGroup, Col, Button } from "react-bootstrap";
+import axios from 'axios';
 
-class Signup extends React.Component {
+
+class Signup extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
+      errors: {}
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+
+    console.log(newUser);
+  }
   render() {
     return (
-      <div className="Signup">
-        <div className="jumbotron text-left">
-          <Col sm={2}>
-            <h2>Signup</h2>
-          </Col>
-          <br />
-          <Form horizontal action="/register" method="post">
-            <FormGroup controlId="formHorizontalUser">
-              <Col sm={2}>Choose a Username:</Col>
-              <Col sm={8}>
-                <FormControl type="text" name="username" />
-              </Col>
-            </FormGroup>
-            <FormGroup controlId="formHorizontalPassword">
-              <Col sm={2}>Choose a Password:</Col>
-              <Col sm={8}>
-                <FormControl type="text" name="password" />
-              </Col>
-            </FormGroup>
-            <FormGroup>
-              <Col sm={8}>
-                <Button bsStyle="info" type="submit" value="Submit">
-                  Submit
-                </Button>
-              </Col>
-            </FormGroup>
-          </Form>
-          <Col sm={8}>
-            <p>
-              Already have an account?{" "}
-              <a className="signupLinkStyle" href="#login">
-                Log in here
+      <div className="register">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 m-auto">
+              <div className="jumbotron">
+                <h2 className="display-5 text-center mt-1 p-1">
+                  Create your SkyWire account
+                  </h2>
+                <p className="lead text-center"></p>
+                <form onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg" placeholder="Name"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                      required />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      className="form-control form-control-lg"
+                      placeholder="Email Address"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      required
+                    />
+                    {/* <small classNameName="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small> */}
+                  </div>
+                  <div className="form-group">
+                    <input type="password"
+                      className="form-control form-control-lg"
+                      placeholder="Password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      required />
+                  </div>
+                  <div className="form-group">
+                    <input type="password"
+                      className="form-control form-control-lg"
+                      placeholder="Confirm Password"
+                      name="password2"
+                      value={this.state.password2}
+                      onChange={this.onChange}
+                      required />
+                  </div>
+                  <input type="submit" className="btn btn-info btn-block mt-4" />
+                </form>
+              </div>
+              <p className="text-center md-8 p-4">
+                Already have an account?{" "}
+                <a className="signupLinkStyle" href="/login">
+                  Log in here
               </a>
-            </p>
-          </Col>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+
     );
   }
 }
+
+//   signup() {
+//     axios.post('/api/v1/users/signup', this.state).then(() => {
+//       alert('success')
+//     }).catch((err) => {
+//       console.log('error')
+//     })
+//   }
+// }
 
 export default Signup;
