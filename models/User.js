@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
+const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+// Create Schema
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
-  passwordHash: {
+  password: {
     type: String,
     required: true
   },
-  salt: {
-    type: String,
-    required: true
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+module.exports = User = mongoose.model('users', UserSchema);
