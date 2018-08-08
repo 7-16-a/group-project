@@ -32,10 +32,10 @@ class Signup extends Component {
       password2: this.state.password2
     };
 
-    axios
-    .post('/api/users/register', newUser)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
+    // axios
+    // .post('/api/users/register', newUser)
+    // .then(res => console.log(res.data))
+    // .catch(err => console.log(err));
     
       
     }
