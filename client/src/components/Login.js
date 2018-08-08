@@ -29,10 +29,15 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    axios
-      .post('/api/users/login', user)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+    axios.post('/api/users/login', this.state).then((res) => {
+      localStorage.setItem('token', res.data.token)
+      // window.location.pathname = '/Post';
+    })
+
+    // axios
+    //   .post('/api/users/login', user)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
 
   }
   render() {
@@ -78,13 +83,13 @@ class Login extends Component {
     </div>;
   }
 
-  login() {
-    axios.post('/api/users/login', this.state).then(() => {
-      alert('success')
-    }).catch((err) => {
-      console.log('error')
-    })
-  }
+  // login() {
+  //   axios.post('/api/users/login', this.state).then(() => {
+  //     alert('success')
+  //   }).catch((err) => {
+  //     console.log('error')
+  //   })
+  // }
 }
 
 export default Login;
