@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+ }
+ *:before,
+ *:after {
+  box-sizing: border-box;
+ }
+
+
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
+
+
+.footerLogo {
+  max-width: 100%;
+  object-fit: contain;
+  text-align: center;
+  bottom: "0";
+  height: "60px";
+}
+
+.main-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px; /* height of your footer */
+ }
