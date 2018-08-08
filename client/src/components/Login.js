@@ -29,7 +29,11 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    console.log(user);
+    axios
+      .post('/api/users/login', user)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+
   }
   render() {
     return <div className="login">
@@ -75,7 +79,7 @@ class Login extends Component {
   }
 
   login() {
-    axios.post('/api/v1/users/login', this.state).then(() => {
+    axios.post('/api/users/login', this.state).then(() => {
       alert('success')
     }).catch((err) => {
       console.log('error')

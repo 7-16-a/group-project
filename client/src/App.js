@@ -4,7 +4,6 @@ import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
-import About from "./components/About";
 
 import Signup from "./components/Signup";
 
@@ -23,7 +22,6 @@ class App extends Component {
           <div className="container">
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/about" component={About} />
           </div>
           <Footer />
         </div>

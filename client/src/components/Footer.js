@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, FormControl, FormGroup, Col, Button } from "react-bootstrap";
-import axios from "axios";
 
 class Footer extends Component {
   render() {
@@ -9,7 +8,7 @@ class Footer extends Component {
         <footer className="bg-secondary text-white mt-1 p-4 text-center">
           <p className="">Enough said?</p>
           <div className="text-center">
-            <Button outLine color="secondary" bsStyle="light" bsSize="small" href="/">
+            <Button color="secondary" bsStyle="light" bsSize="small" href="/">
               Log Out
           </Button>{' '}
           </div>

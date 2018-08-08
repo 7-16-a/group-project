@@ -11,8 +11,7 @@ class Signup extends Component {
       name: '',
       email: '',
       password: '',
-      password2: '',
-      errors: {}
+      password2: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,8 +32,13 @@ class Signup extends Component {
       password2: this.state.password2
     };
 
-    console.log(newUser);
-  }
+      axios
+      .post('/api/users/register', newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+      
+    }
+
   render() {
     return (
       <div className="register">
@@ -66,7 +70,6 @@ class Signup extends Component {
                       onChange={this.onChange}
                       required
                     />
-                    {/* <small classNameName="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small> */}
                   </div>
                   <div className="form-group">
                     <input type="password"
@@ -103,14 +106,5 @@ class Signup extends Component {
     );
   }
 }
-
-//   signup() {
-//     axios.post('/api/v1/users/signup', this.state).then(() => {
-//       alert('success')
-//     }).catch((err) => {
-//       console.log('error')
-//     })
-//   }
-// }
 
 export default Signup;
