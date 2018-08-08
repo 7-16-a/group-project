@@ -8,7 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const morgan = require("morgan");
 const app = express();
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
 require("./models/User");
 
@@ -34,6 +34,15 @@ app.get("*", (req, res) => {
 
 //DB Config
 // const db = require("./config/keys").mongoURI;
+
+// Mongoose connect to db
+// mongoose.connect('mongodb://admin:adminADMIN123@ds141671.mlab.com:41671/blog_7-16-a', function(err) {
+//   if (err) {
+//     console.err(err);
+//   } else {
+//     console.log('Connected');
+//   }
+// });
 
 mongoose.connect('mongodb://admin:adminADMIN123@ds141671.mlab.com:41671/blog_7-16-a');
 
