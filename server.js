@@ -1,38 +1,78 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
-
+// module imports
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const morgan = require("morgan");
 const app = express();
+const db = mongoose.connection;
 
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+require("./models/user");
+
+const posts = require("./routes/api/posts");
+const users = require("./routes/api/users");
+
+// PRODUCTION ONLY
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// app middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-// DB Config
-const db = require('./config/keys').mongoURI;
+// PRODUCTION ONLY
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
-// Connect to MongoDB
-mongoose
-  .connect(db)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+// Development mode port
+// const port = process.env.PORT || 5000;
+// app.listen(port)
 
-// Passport middleware
-app.use(passport.initialize());
+//DB Config
+// const db = require("./config/keys").mongoURI;
 
-// Passport Config
-require('./config/passport')(passport);
+mongoose.connect('mongodb://admin:adminADMIN123@ds141671.mlab.com:41671/blog_7-16-a');
 
-// Use Routes
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+
+//Connect to Mongo
+// mongoose
+//   .connect(
+//     db,
+//     { useNewUrlParser: true }
+//   )
+//   .then(() => console.log("Sweet! DB C O N N E C T E D !"))
+//   .catch(err => console.log("D I D  N O T  C O N N E C T " + err));
+
+//Mongoose connect to db
+// mongoose.connect('mongodb://admin:adminADMIN1234@ds141671.mlab.com:41671/blog_7-16-a', function(err) {
+//   if (err) {
+//     console.err(err);
+//   } else {
+//     console.log('Connected');
+//   }
+// });
+
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open', () => {
+//   console.log('DB connected!');
+// });
+// mongoose.set('bufferCommands', false);
+// mongoose.set('debug', true);
+
+//Use Routes
+app.use("/api/posts", posts);
+app.use("/api/users", users);
+
+//Test route
+app.get("/", (req, res) => res.send("Hello! This route works!"));
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));
+
+module.exports = app;
+

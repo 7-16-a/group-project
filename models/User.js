@@ -1,24 +1,29 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let crypto = require('crypto');
+let jwt = require('jsonwebtoken');
 
-// Create Schema
-const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
+let UserSchema = new mongoose.Schema({
+  email: String,
+  passwordHash: String,
+  salt: String
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+UserSchema.method("setPassword", function (password) {
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.passwordHash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha1').toString('hex');
+});
+
+UserSchema.method("validatePassword", function (password) {
+  let hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha1').toString('hex');
+  return (hash === this.passwordHash);
+});
+
+UserSchema.method("generateJWT", function () {
+  return jwt.sign({
+    id: this._id,
+    email: this.email,
+  }, 'SecretKey');
+});
+
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

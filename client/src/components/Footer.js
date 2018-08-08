@@ -8,7 +8,7 @@ class Footer extends Component {
         <footer className="bg-secondary text-white mt-1 p-4 text-center">
           <p className="">Enough said?</p>
           <div className="text-center">
-            <Button color="secondary" bsStyle="light" bsSize="small" href="/">
+            <Button color="secondary" href="/">
               Log Out
           </Button>{' '}
           </div>
