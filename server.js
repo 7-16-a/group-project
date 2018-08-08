@@ -10,7 +10,7 @@ const morgan = require("morgan");
 const app = express();
 const db = mongoose.connection;
 
-require("./models/user");
+require("./models/User");
 
 const posts = require("./routes/api/posts");
 const users = require("./routes/api/users");
@@ -38,30 +38,7 @@ app.get("*", (req, res) => {
 mongoose.connect('mongodb://admin:adminADMIN123@ds141671.mlab.com:41671/blog_7-16-a');
 
 
-//Connect to Mongo
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log("Sweet! DB C O N N E C T E D !"))
-//   .catch(err => console.log("D I D  N O T  C O N N E C T " + err));
 
-//Mongoose connect to db
-// mongoose.connect('mongodb://admin:adminADMIN1234@ds141671.mlab.com:41671/blog_7-16-a', function(err) {
-//   if (err) {
-//     console.err(err);
-//   } else {
-//     console.log('Connected');
-//   }
-// });
-
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// db.once('open', () => {
-//   console.log('DB connected!');
-// });
-// mongoose.set('bufferCommands', false);
-// mongoose.set('debug', true);
 
 //Use Routes
 app.use("/api/posts", posts);
