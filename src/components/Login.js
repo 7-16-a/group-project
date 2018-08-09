@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Login.css";
-import { Container, Row, Col, Input, Button } from 'mdbreact';
+import { Container, Row, Input, Button } from 'mdbreact';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 

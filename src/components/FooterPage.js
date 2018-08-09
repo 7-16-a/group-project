@@ -14,7 +14,6 @@ class FooterPage extends Component {
           </Button>{' '}
           </div> */}
           <br />
-
           Copyright &copy; {new Date().getFullYear()} SkyWire: Powered by React
        <img
             className="footerLogo"

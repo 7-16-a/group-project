@@ -11,6 +11,9 @@ import axios from 'axios';
 //   )
 // }
 
+//add possible navigation to add different types of files i.e text, photo, 
+//add edit post button after save changes?
+
 class Post extends React.Component {
   render() {
     return (
