@@ -31,7 +31,7 @@ class Login extends Component {
 
     axios.post('/api/users/login', this.state).then((res) => {
       localStorage.setItem('token', res.data.token)
-      // window.location.pathname = '/Post';
+      window.location.pathname = '/Home';
     })
 
     // axios
@@ -82,14 +82,6 @@ class Login extends Component {
       </div>
     </div>;
   }
-
-  // login() {
-  //   axios.post('/api/users/login', this.state).then(() => {
-  //     alert('success')
-  //   }).catch((err) => {
-  //     console.log('error')
-  //   })
-  // }
 }
 
 export default Login;

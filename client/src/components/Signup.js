@@ -32,10 +32,15 @@ class Signup extends Component {
       password2: this.state.password2
     };
 
-    axios
-    .post('/api/users/register', newUser)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
+    axios.post('/api/users/register', this.state).then((res) => {
+      localStorage.setItem('token', res.data.token) 
+      window.location.pathname = '/Login';
+  })    
+
+    // axios
+    // .post('/api/users/register', newUser)
+    // .then(res => console.log(res.data))
+    // .catch(err => console.log(err));
     
       
     }
