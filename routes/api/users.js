@@ -7,8 +7,8 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 
 // Load Input Validation
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+// const validateRegisterInput = require('../../validation/register');
+// const validateLoginInput = require('../../validation/login');
 
 // Load User model
 let mongoose = require('mongoose');
@@ -24,67 +24,37 @@ router.get('/test', (req, res) => res.json({ msg: 'Users Works' }));
 // @desc    Register user
 // @access  Public
 
-  // // Check Validation
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
+// // Check Validation
+// if (!isValid) {
+//   return res.status(400).json(errors);
+// }
 
-  router.post('/register', (req, res) => {
-    let newUser = new User();
-    newUser.email = req.body.email;
-    newUser.setPassword(req.body.password);
-    newUser.save((err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({ token: newUser.generateJWT() })
-      }
-    })
+router.post('/register', (req, res) => {
+  let newUser = new User();
+  newUser.email = req.body.email;
+  newUser.setPassword(req.body.password);
+  newUser.save((err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json({ token: newUser.generateJWT() })
+    }
   })
-  
-  router.post('/login', ((req, res) => {
-    User.findOne({ email: req.body.email }, ((err, user) => {
-      if (err) {
-        res.sendStatus(500)
+})
+
+router.post('/login', ((req, res) => {
+  User.findOne({ email: req.body.email }, ((err, user) => {
+    if (err) {
+      res.sendStatus(500)
+    } else {
+      if (user.validatePassword(req.body.password)) {
+        res.json({ token: user.generateJWT() })
       } else {
-        if (user.validatePassword(req.body.password)) {
-          res.json({ token: user.generateJWT() })
-        } else {
-          res.json('Incorrect Password')
-        }
+        res.json('Incorrect Password')
       }
-    }))
+    }
   }))
-
-  // User.findOne({ email: req.body.email }).then(user => {
-  //   if (user) {
-  //     errors.email = 'Email already exists';
-  //     return res.status(400).json(errors);
-  //   } else {
-  //     const avatar = gravatar.url(req.body.email, {
-  //       s: '200', // Size
-  //       r: 'pg', // Rating
-  //       d: 'mm' // Default
-  //     });
-
-  //     const newUser = new User({
-  //       name: req.body.name,
-  //       email: req.body.email,
-  //       password: req.body.password
-  //     });
-
-  //     bcrypt.genSalt(10, (err, salt) => {
-  //       bcrypt.hash(newUser.password, salt, (err, hash) => {
-  //         if (err) throw err;
-  //         newUser.password = hash;
-  //         newUser
-  //           .save()
-  //           .then(user => res.json(user))
-  //           .catch(err => console.log(err));
-  //       });
-  //     });
-  //   }
-  // });
+}))
 
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
