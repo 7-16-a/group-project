@@ -33,21 +33,21 @@ class Signup extends Component {
     };
 
     axios.post('/api/users/register', this.state).then((res) => {
-      localStorage.setItem('token', res.data.token) 
+      localStorage.setItem('token', res.data.token)
       window.location.pathname = '/Login';
-  })    
+    })
 
     // axios
     // .post('/api/users/register', newUser)
     // .then(res => console.log(res.data))
     // .catch(err => console.log(err));
-    
-      
-    }
+
+
+  }
 
   render() {
     return (
-      <div className="register">
+      <div className="">
         <div className="container">
           <div className="row">
             <div className="col-md-6 m-auto">
@@ -100,7 +100,7 @@ class Signup extends Component {
               </div>
               <p className="text-center md-8 p-4">
                 Already have an account?{" "}
-                <a className="signupLinkStyle" href="/login">
+                <a className="signupLinkStyle text-info" href="/login">
                   Log in here
               </a>
               </p>
