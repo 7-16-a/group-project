@@ -17,7 +17,7 @@ let posts = require("./routes/api/posts");
 let users = require("./routes/api/users");
 
 // PRODUCTION ONLY
-// app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // app middleware
 app.use(bodyParser.json());
@@ -25,9 +25,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // PRODUCTION ONLY
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 // Development mode port
 // const port = process.env.PORT || 5000;
@@ -35,6 +35,9 @@ app.use(cookieParser());
 
 //DB Config
 // const db = require("./config/keys").mongoURI;
+
+// Heroku addon URI
+// mongodb://<dbuser>:<dbpassword>@ds125892.mlab.com:25892/heroku_tsghbqbm
 
 // Mongoose connect to db
 mongoose.connect('mongodb://admin:adminADMIN123@ds141671.mlab.com:41671/blog_7-16-a', function (err) {
