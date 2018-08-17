@@ -30,11 +30,8 @@ router.put('/:id', (req, res) => {
         if (err) {
             res.send(err)
         } else {
-<<<<<<< HEAD
-            console.log(post);
-=======
             // console.log(post);
->>>>>>> master
+            // console.log(post);
             post.message = req.body.newPost;
             post.save((err) => {
                 if (err) {
