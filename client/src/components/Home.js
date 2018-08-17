@@ -57,6 +57,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+<<<<<<< HEAD
                 <div className="card card-body bg-secondary mb-2">
                     <div className="row">
                         <div className="">
@@ -85,11 +86,30 @@ class Home extends React.Component {
                         <div className="card-body mb-2 text-lg bg-secondary">
                         <div className="jumbotron p-3 mb-1 bg-white">
                         <br />
+=======
+                <div className="post-form mb-3">
+                    <div className="card card-info">
+                        <div className="card-header bg-info text-white">What's New?</div>
+                        <div className="card-body">
+                            <form onSubmit={(e) => this.save(e)}>
+                                <div className="form-group">
+                                    <textarea rows="10" cols="100" placeholder="Say something..." name="message" onChange={(e) => this.setValue(e)} />
+                                </div>
+                                <button onClick={() => this.save()} type="submit" className="btn btn-dark">
+                                    Submit</button>
+                            </form>
+                        </div>
+                        <br />
+                        <div className="card-header bg-info text-white">My Posts</div>
+                        <div className="card-body">
+                            {/* <div className="jumbotron"> */}
+>>>>>>> master
                             <ul>
                                 {(this.state.posts) ? this.state.posts.map((post, index) => (
                                     <li key={index}>{post.message}
                                         <br />
                                         <br />
+<<<<<<< HEAD
                                         <div className="">
                                             <button className="btn btn-danger btn-sm" onClick={() => this.edit(post)}>edit</button>
                                             <button className="btn btn-secondary btn-sm" onClick={() => this.delete(post)}>delete</button>
@@ -100,6 +120,16 @@ class Home extends React.Component {
                                 )) : null}
                             </ul>
                             </div>
+=======
+                                        <div className="btn-group">
+                                            <button className="btn btn-danger" onClick={() => this.edit(post)}>edit</button>
+                                            <button className="btn btn-dark" onClick={() => this.delete(post)}>delete</button>
+                                        </div>
+                                    </li>
+                                )) : null}
+                            </ul>
+                            {/* </div> */}
+>>>>>>> master
 
                             <br />
                         </div>
@@ -107,7 +137,11 @@ class Home extends React.Component {
                         <br />
                     </div>
                 </div>
+<<<<<<< HEAD
             </div >
+=======
+            </div>
+>>>>>>> master
         )
     }
 }
