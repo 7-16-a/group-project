@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import "./Home.css";
 
-class Home extends React.Component {
+class Home extends Component {
 
     state = {}
 
@@ -18,6 +18,7 @@ class Home extends React.Component {
         let authToken = window.localStorage.token;
         let payload = (authToken) ? JSON.parse(window.atob(authToken.split('.')[1])) : null;
         axios.get(`/api/posts/${payload.id}`).then((res) => {
+            console.log(res) // should print out posts
             this.setState({
                 owner: payload.id,
                 posts: res.data
