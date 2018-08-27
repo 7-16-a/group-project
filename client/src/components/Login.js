@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Login.css";
-import { Form, FormControl, FormGroup, Col, Button } from "react-bootstrap";
 import axios from 'axios';
 
 class Login extends Component {
@@ -24,14 +23,14 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const user = {
-      email: this.state.email,
-      password: this.state.password,
-    };
+    // const user = {
+    //   email: this.state.email,
+    //   password: this.state.password,
+    // };
 
     axios.post('/api/users/login', this.state).then((res) => {
       localStorage.setItem('token', res.data.token)
-      window.location.pathname = '/Home';
+      window.location.href = '/home';
     })
 
     // axios
@@ -74,7 +73,7 @@ class Login extends Component {
             </div>
             <p className="text-center md-8 p-4">
               Don't have an account yet? <a className="signupLinkStyle" href="/signup">
-                Sign up in here
+                Sign up here
                 </a>
             </p>
           </div>

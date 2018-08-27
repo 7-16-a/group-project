@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -8,11 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 
 class AppNavbar extends Component {
@@ -46,9 +40,6 @@ class AppNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/home">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/about">About</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">Log Out</NavLink>
