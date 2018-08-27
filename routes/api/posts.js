@@ -3,8 +3,6 @@ let mongoose = require('mongoose');
 let router = express.Router();
 let Post = mongoose.model('Post');
 
-
-
 router.post('/', (req, res) => {
     let newPost = new Post();
     newPost.message = req.body.message;
